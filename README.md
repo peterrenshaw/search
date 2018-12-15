@@ -10,6 +10,24 @@ Objective: Simple program to read CLI arguments from command line with search fu
 
 
 2018DEC15
+* this is nice: search for keyword in file, for example this search
+  is through the source code looking for refernces to mutability. Result
+  then tells you which line the reference is.
+
+```
+> search pr$ cargo run mut src/main.rs
+>    Finished dev [unoptimized + debuginfo] target(s) in 0.06s                                             
+>     Running `target/debug/search mut src/main.rs`
+> pattern:	"mut"
+> args:		"src/main.rs"
+> results:
+>		42.     let mut count = 1;
+>		43.     let mut is_found = false;
+>
+```
+
+
+
 * added line numbers, message if no key in file.
 
 * example:

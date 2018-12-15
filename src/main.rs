@@ -4,6 +4,12 @@
 # date: 2018DEC15
 # prog: pr 
 # desc: simple cli program
+# usag:  
+#           key:      value you want to search for in file
+#           filepath: valid filepath to file
+#
+#           ./search key some/given/a/filepath/file.dat
+#
 # sorc: <https://rust-lang-nursery.github.io/cli-wg/tutorial/cli-args.html>
 # obje: use pattern search in file
 #       then display lines that are found
@@ -49,8 +55,10 @@ fn main() {
         count = count + 1;
     }
 
-    // 
-    if is_found == false { println!("\t\t{:?} not found in {:?}", args.pattern, args.path); }
+    // if key not found, tell user
+    if is_found == false {
+        println!("\t\t{:?} not found in {:?}", args.pattern, args.path);
+    }
 }
 
 // vim: ff=unix:ts=4:sw=4:tw=78:noai:expandtab
