@@ -10,6 +10,8 @@ Objective: Simple program to read CLI arguments from command line with search fu
 
 
 2018DEC15
+* handle the errors for reading args.path using an enum, then match result.
+
 * this is nice: search for keyword in file, for example this search
   is through the source code looking for refernces to mutability. Result
   then tells you which line the reference is.
@@ -25,8 +27,6 @@ Objective: Simple program to read CLI arguments from command line with search fu
 >		43.     let mut is_found = false;
 >
 ```
-
-
 
 * added line numbers, message if no key in file.
 
