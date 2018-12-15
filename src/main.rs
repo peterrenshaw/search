@@ -39,8 +39,11 @@ fn main() {
     println!("pattern:\t{:?}\nargs:\t\t{:?}", args.pattern, args.path);
 
     // open file from args
-    let content = std::fs::read_to_string(&args.path)
-       .expect("Warning: could not read file");
+    let result = std::fs::read_to_string(&args.path);
+    let content = match result {
+        Ok(content) => { content },
+        Err(error)  => { panic!("Error: we have an error {}, total chaos, bye.", error); }
+    };
     
     // loop through the file content
     // show results OR nothing
