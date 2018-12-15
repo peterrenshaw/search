@@ -30,7 +30,7 @@ fn main() {
     let args = Cli::from_args();
 
     // display input
-    println!("pattern:\t<{:?}>\nargs:\t\t<{:?}>", args.pattern, args.path);
+    println!("pattern:\t{:?}\nargs:\t\t{:?}", args.pattern, args.path);
 
     // open file from args
     let content = std::fs::read_to_string(&args.path)
@@ -39,11 +39,18 @@ fn main() {
     // loop through the file content
     // show results OR nothing
     println!("results:");
+    let mut count = 1;
+    let mut is_found = false;
     for line in content.lines() {
         if line.contains(&args.pattern) {
-            println!("\t\t{}", line);
+            println!("\t\t{}. {}", count, line);
+            is_found = true;
         }
+        count = count + 1;
     }
+
+    // 
+    if is_found == false { println!("\t\t{:?} not found in {:?}", args.pattern, args.path); }
 }
 
 // vim: ff=unix:ts=4:sw=4:tw=78:noai:expandtab

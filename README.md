@@ -10,7 +10,9 @@ Objective: Simple program to read CLI arguments from command line with search fu
 
 
 2018DEC15
-* for example:
+* added line numbers, message if no key in file.
+
+* example:
 
 ```
 cargo run n Cargo.toml 
@@ -30,7 +32,7 @@ results:
 
 
 
-* remember Cargo.toml has structopt = "0.2.10":w
+* remember Cargo.toml has structopt = "0.2.10"
 * simple example working
 * added README, LICENCE
 * checked in.
