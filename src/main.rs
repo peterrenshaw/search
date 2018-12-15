@@ -4,6 +4,7 @@
 # date: 2018DEC15
 # prog: pr 
 # desc: simple cli program
+# sorc: <https://rust-lang-nursery.github.io/cli-wg/tutorial/cli-args.html>
 # obje: read pattern, file then search in teh contents of the file.
 #========
 */

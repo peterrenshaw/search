@@ -12,4 +12,6 @@ Simple program to read CLI arguments from command line with search functionality
 
 
 2018DEC15
-* 
+* simple example working
+* added README, LICENCE
+* checked in. 
