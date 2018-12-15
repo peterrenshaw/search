@@ -35,7 +35,7 @@ Objective: Simple program to read CLI arguments from command line with search fu
 cargo run n Cargo.toml 
 ```
 
-yeilds
+yields
 
 ```
 pattern:	<"n">
