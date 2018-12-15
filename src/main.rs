@@ -5,7 +5,8 @@
 # prog: pr 
 # desc: simple cli program
 # sorc: <https://rust-lang-nursery.github.io/cli-wg/tutorial/cli-args.html>
-# obje: read pattern, file then search in teh contents of the file.
+# obje: use pattern search in file
+#       then display lines that are found
 #========
 */
 
@@ -14,8 +15,6 @@ extern crate structopt;
 use structopt::StructOpt;
 
 
-// pattern search in file
-// display lines that contain it
 #[derive(Debug)]
 #[derive(StructOpt)]
 struct Cli {
@@ -30,8 +29,21 @@ struct Cli {
 fn main() {
     let args = Cli::from_args();
 
+    // display input
+    println!("pattern:\t<{:?}>\nargs:\t\t<{:?}>", args.pattern, args.path);
 
-    println!("Pattern:\t<{:?}>\nargs:\t\t<{:?}>", args.pattern, args.path);
+    // open file from args
+    let content = std::fs::read_to_string(&args.path)
+       .expect("Warning: could not read file");
+    
+    // loop through the file content
+    // show results OR nothing
+    println!("results:");
+    for line in content.lines() {
+        if line.contains(&args.pattern) {
+            println!("\t\t{}", line);
+        }
+    }
 }
 
 // vim: ff=unix:ts=4:sw=4:tw=78:noai:expandtab
