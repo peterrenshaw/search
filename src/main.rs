@@ -4,6 +4,7 @@
 # date: 2018DEC15
 # prog: pr 
 # desc: simple cli program
+# obje: use pattern search in file then display lines that are found
 # usag:  
 #           key:      value you want to search for in file
 #           filepath: valid filepath to file
@@ -11,8 +12,7 @@
 #           ./search key some/given/a/filepath/file.dat
 #
 # sorc: <https://rust-lang-nursery.github.io/cli-wg/tutorial/cli-args.html>
-# obje: use pattern search in file
-#       then display lines that are found
+#
 #========
 */
 
@@ -32,6 +32,40 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
+/*
+#--------
+# show_result: is search key in content?
+#              search line by line to check if pattern 
+#              is in a line, display, move to next line.
+#              if found, return t/f
+# args:      
+#              pattern: key as string to find in content.
+#              content: string separated by lines to search.
+#
+# return:      is pattern found as bool
+#--------
+*/
+fn show_result(pattern: &str, content: &std::string::String) -> bool {
+    let mut count = 0;
+    let mut is_found = false;
+
+    for line in content.lines() {
+        if line.contains(pattern) {
+            println!("\t\t{}. {}", count, line);
+            is_found = true;
+        }
+        count = count + 1;
+    }
+
+    return is_found;
+}
+
+
+/*
+#--------
+# main:
+#--------
+*/
 fn main() {
     let args = Cli::from_args();
 
@@ -44,22 +78,14 @@ fn main() {
         Ok(content) => { content },
         Err(error)  => { panic!("Error: we have an error {}, total chaos, bye.", error); }
     };
-    
+
     // loop through the file content
     // show results OR nothing
     println!("results:");
-    let mut count = 1;
-    let mut is_found = false;
-    for line in content.lines() {
-        if line.contains(&args.pattern) {
-            println!("\t\t{}. {}", count, line);
-            is_found = true;
-        }
-        count = count + 1;
-    }
 
+    // TODO put this in a function
     // if key not found, tell user
-    if is_found == false {
+    if show_result(&args.pattern, &content) == false {
         println!("\t\t{:?} not found in {:?}", args.pattern, args.path);
     }
 }

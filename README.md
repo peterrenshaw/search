@@ -8,6 +8,8 @@ Objective: Simple program to read CLI arguments from command line with search fu
 
 * return line if found, else fails
 
+2018DEC17
+* pushed guts of search into function, show_result. 
 
 2018DEC15
 * handle the errors for reading args.path using an enum, then match result.
