@@ -44,14 +44,20 @@ struct Cli {
 */
 fn show_result(pattern: &str, content: &std::string::String) -> bool {
     let mut count = 0;
+    let mut located = 0;
     let mut is_found = false;
 
     for line in content.lines() {
         if line.contains(pattern) {
-            println!("\t\t{}. {}", count, line);
+            println!(" {:03}. {}", count, line);
             is_found = true;
+            located = located + 1;
         }
         count = count + 1;
+    }
+
+    if is_found == true { 
+        println!("Found pattern <{}> in {}/{} lines.", pattern, located, count);
     }
 
     return is_found;
