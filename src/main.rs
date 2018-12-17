@@ -48,7 +48,7 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
     let mut is_found = false;
 
     for line in content.lines() {
-        if line.contains(pattern) {
+        if line.contains(pattern) { 
             println!(" {:03}. {}", count, line);
             is_found = true;
             located = located + 1;
