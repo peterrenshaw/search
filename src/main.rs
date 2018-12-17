@@ -65,8 +65,7 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
 fn main() {
     let args = Cli::from_args();
 
-    println!("results:");
-    println!("pattern:\t{:?}\nargs:\t\t{:?}", args.pattern, args.path);
+    println!("pattern:\t{:?}\nargs:\t\t{:?}\nresults:", args.pattern, args.path);
 
     // open file from args
     let result = std::fs::read_to_string(&args.path);
