@@ -16,13 +16,10 @@
 #========
 */
 
-
 extern crate structopt;
 use structopt::StructOpt;
 
-
-#[derive(Debug)]
-#[derive(StructOpt)]
+#[derive(Debug, StructOpt)]
 struct Cli {
     // The pattern to look for
     pattern: String,
@@ -60,7 +57,6 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
     return is_found;
 }
 
-
 /*
 #--------
 # main:
@@ -75,11 +71,11 @@ fn main() {
     // open file from args
     let result = std::fs::read_to_string(&args.path);
     let content = match result {
-        Ok(content) => { content },
-        Err(error)  => { panic!("Error: we have an error {}, total chaos, bye.", error); }
+        Ok(content) => content,
+        Err(error) => {
+            panic!("Error: we have an error {}, total chaos, bye.", error);
+        }
     };
-
-
 
     // TODO put this in a function
     // if key not found, tell user
