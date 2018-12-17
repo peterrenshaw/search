@@ -77,7 +77,6 @@ fn main() {
         }
     };
 
-    // TODO put this in a function
     // if key not found, tell user
     if show_result(&args.pattern, &content) == false {
         println!("\t\t{:?} not found in {:?}", args.pattern, args.path);
