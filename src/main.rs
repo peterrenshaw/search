@@ -1,7 +1,8 @@
 /*
 #========
 # name: search
-# date: 2018DEC15
+# date: 2018DEC17
+#       2018DEC15
 # prog: pr 
 # desc: simple cli program
 # obje: use pattern search in file then display lines that are found
@@ -12,7 +13,6 @@
 #           ./search key some/given/a/filepath/file.dat
 #
 # sorc: <https://rust-lang-nursery.github.io/cli-wg/tutorial/cli-args.html>
-#
 #========
 */
 
@@ -69,7 +69,7 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
 fn main() {
     let args = Cli::from_args();
 
-    // display input
+    println!("results:");
     println!("pattern:\t{:?}\nargs:\t\t{:?}", args.pattern, args.path);
 
     // open file from args
@@ -79,9 +79,7 @@ fn main() {
         Err(error)  => { panic!("Error: we have an error {}, total chaos, bye.", error); }
     };
 
-    // loop through the file content
-    // show results OR nothing
-    println!("results:");
+
 
     // TODO put this in a function
     // if key not found, tell user
