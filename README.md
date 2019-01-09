@@ -8,6 +8,11 @@ Objective: Simple program to read CLI arguments from command line with search fu
 
 * return line if found, else fails
 
+2019JAN09
+* rust path details killed, add .cargo/bin to .bash_profile
+
+  <https://www.rust-lang.org/tools/install>
+
 2018DEC17
 * pushed guts of search into function, show_result. 
 
