@@ -45,6 +45,7 @@ struct Cli {
 # return:      is pattern found as bool
 #--------
 */
+/*
 fn show_result(pattern: &str, content: &std::string::String) -> bool {
     let mut count = 0;
     let mut located = 0;
@@ -65,7 +66,7 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
 
     return is_found;
 }
-
+*/
 
 /*
 #--------
@@ -73,13 +74,13 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
 #--------
 */
 fn main() {
-   /// Parse arguments into cli struct.
+   // Parse arguments into cli struct.
    let args = Cli::from_args(); 
 
-   /// Open the file content given the filepath.
+   // Open the file content given the filepath.
    let result = std::fs::read_to_string(&args.path);
 
-   /// Use result as enum to content or error.
+   // Use result as enum to content or error.
    let content = match result {
        Ok (content) => content,
        Err (error) => { panic!("Error: we have an error {}, total chaos, bye.", error); }
