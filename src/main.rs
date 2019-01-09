@@ -20,15 +20,16 @@
 extern crate structopt;
 use structopt::StructOpt;
 
+
+// Func: search
+// Desc: given a <path>, search for <pattern> in the file
 #[derive(Debug, StructOpt)]
 struct Cli {
-    // The pattern to look for
-    pattern: String,
-
-    // The path to the file to read
+    pattern: String, 
     #[structopt(parse(from_os_str))]
-    path: std::path::PathBuf,
+    path: std::path::PathBuf,        
 }
+
 
 /*
 #--------
@@ -64,29 +65,24 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
     return is_found;
 }
 
+
 /*
 #--------
 # main:
 #--------
 */
 fn main() {
-    let args = Cli::from_args();
+   let args = Cli::from_args(); 
+   let result = std::fs::read_to_string(&args.path);
+   let content = match result {
+       Ok (content) => content,
+       Err (error) => { panic!("Error: we have an error {}, total chaos, bye.", error); }
+   };
 
-    println!("pattern:\t{:?}\nargs:\t\t{:?}\nresults:", args.pattern, args.path);
-
-    // open file from args
-    let result = std::fs::read_to_string(&args.path);
-    let content = match result {
-        Ok(content) => content,
-        Err(error) => {
-            panic!("Error: we have an error {}, total chaos, bye.", error);
-        }
-    };
-
-    // if key not found, tell user
-    if show_result(&args.pattern, &content) == false {
-        println!("\t\t{:?} not found in {:?}", args.pattern, args.path);
-    }
+   println!("pattern:\t{:?}\nargs:\t\t{:?}\nresults:", args.pattern, args.path);
+   println!("{}", content);
 }
+
+
 
 // vim: ff=unix:ts=4:sw=4:tw=78:noai:expandtab
