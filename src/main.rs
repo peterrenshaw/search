@@ -5,7 +5,7 @@
 #       2018DEC17
 #       2018DEC15
 # prog: pr 
-# desc: simple cli program
+# desc: simple cli program with documentation comments
 # obje: use pattern search in file then display lines that are found
 # usag:  
 #           key:      value you want to search for in file
@@ -21,8 +21,9 @@ extern crate structopt;
 use structopt::StructOpt;
 
 
-// Func: search
-// Desc: given a <path>, search for <pattern> in the file
+/// **Func** search
+/// **Desc** given a <path>, search for <pattern> in the file and 
+///          display the lines that contain it.
 #[derive(Debug, StructOpt)]
 struct Cli {
     pattern: String, 
@@ -72,8 +73,13 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
 #--------
 */
 fn main() {
+   /// Parse arguments into cli struct.
    let args = Cli::from_args(); 
+
+   /// Open the file content given the filepath.
    let result = std::fs::read_to_string(&args.path);
+
+   /// Use result as enum to content or error.
    let content = match result {
        Ok (content) => content,
        Err (error) => { panic!("Error: we have an error {}, total chaos, bye.", error); }
