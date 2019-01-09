@@ -20,6 +20,9 @@
 extern crate structopt;
 use structopt::StructOpt;
 
+#[derive(Debug)]
+/// **Func** custom error when you cannot find key in file.
+struct CustomError(String);
 
 /// **Func** search
 /// **Desc** given a <path>, search for <pattern> in the file and 
