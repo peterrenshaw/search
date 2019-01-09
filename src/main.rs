@@ -73,7 +73,7 @@ fn show_result(pattern: &str, content: &std::string::String) -> bool {
 # main:
 #--------
 */
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
    // Parse arguments into cli struct.
    let args = Cli::from_args(); 
 
@@ -82,12 +82,14 @@ fn main() {
 
    // Use result as enum to content or error.
    let content = match result {
-       Ok (content) => content,
-       Err (error) => { panic!("Error: we have an error {}, total chaos, bye.", error); }
+       Ok (content) => { content },
+     //Err (error) => { panic!("Error: we have an error {}, total chaos, bye.", error); }
+       Err (error) => { return Err(error.into()); } 
    };
 
    println!("pattern:\t{:?}\nargs:\t\t{:?}\nresults:", args.pattern, args.path);
    println!("{}", content);
+   Ok(())
 }
 
 
